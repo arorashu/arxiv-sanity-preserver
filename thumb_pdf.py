@@ -84,3 +84,11 @@ for i,p in enumerate(pdf_files):
     os.system(cmd)
 
   time.sleep(0.01) # silly way for allowing for ctrl+c termination
+
+# move all the pdf files to the tmp folder, since they are not needed anymore
+# keeping in tradition of not scripting rm
+# when disk usage goes too high, we can simply delete the tmp folder
+for f in pdf_files:
+  os.rename(os.path.join(pdf_dir, f), os.path.join(Config.tmp_dir, f))
+print(f"moved {len(pdf_files)} pdf files to tmp folder")
+
